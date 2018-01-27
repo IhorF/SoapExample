@@ -1,0 +1,10 @@
+server:
+  ssl:
+    key-store-type: PKCS12
+    key-store-password: qwerty
+    key-alias: tomcat
+    key-store: classpath:keystore.p12
+    enabled-protocols: TLSv1,TLSv1.1,TLSv1.2
+security:
+  basic:
+    enabled: false
