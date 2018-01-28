@@ -1,0 +1,9 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:gs="http://generated.soapexample.com">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <gs:getObjectRequest>
+            <gs:userName>Spain</gs:userName>
+        </gs:getObjectRequest>
+    </soapenv:Body>
+</soapenv:Envelope>

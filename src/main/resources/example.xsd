@@ -1,0 +1,44 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://generated.soapexample.com"
+           targetNamespace="http://generated.soapexample.com" elementFormDefault="qualified">
+
+    <xs:element name="getObjectRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="userName" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getObjectResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="object" type="tns:someRandomObject"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="someRandomObject">
+        <xs:sequence>
+            <xs:element name="randomString" type="xs:string"/>
+            <xs:element name="randomInt" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:element name="getRandomIntRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="randomIntMax" type="xs:integer"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getRandomIntResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="randomInt" type="xs:integer"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

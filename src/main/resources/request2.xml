@@ -1,0 +1,9 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:gs="http://generated.soapexample.com">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <gs:getRandomIntRequest>
+            <gs:randomIntMax>1000</gs:randomIntMax>
+        </gs:getRandomIntRequest>
+    </soapenv:Body>
+</soapenv:Envelope>
