@@ -1,5 +1,6 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
            xmlns:tns="http://generated.soapexample.com"
+           xmlns:xmime="http://www.w3.org/2005/05/xmlmime"
            targetNamespace="http://generated.soapexample.com" elementFormDefault="qualified">
 
     <xs:element name="getObjectRequest">
@@ -41,4 +42,31 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+
+    <xs:element name="downloadMessageRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="randomInt" type="xs:integer"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="downloadMessageResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="downloadResponse" type="tns:downloadResponseType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="downloadResponseType">
+        <xs:sequence>
+            <xs:element name="payLoad">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="messagePayLoad" type="xs:base64Binary"
+                                    xmime:expectedContentTypes="application/octet-stream"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
 </xs:schema>
