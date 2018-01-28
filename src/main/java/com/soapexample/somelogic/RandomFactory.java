@@ -34,6 +34,10 @@ public class RandomFactory {
         return randomObject;
     }
 
+    public int getRandomInteger(int maxNumber) {
+        return random.nextInt(maxNumber);
+    }
+
     private List<Integer> getRandomIntegers(int number) {
         List<Integer> integers = new ArrayList<>();
 

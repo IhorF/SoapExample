@@ -8,6 +8,7 @@
 
 package com.soapexample.generated;
 
+import java.math.BigInteger;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -25,7 +26,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="object" type="{http://generated.soapexample.com}someRandomObject"/>
+ *         &lt;element name="randomIntMax" type="{http://www.w3.org/2001/XMLSchema}integer"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,36 +37,36 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "object"
+    "randomIntMax"
 })
-@XmlRootElement(name = "getObjectResponse")
-public class GetObjectResponse {
+@XmlRootElement(name = "getRandomIntRequest")
+public class GetRandomIntRequest {
 
     @XmlElement(required = true)
-    protected SomeRandomObject object;
+    protected BigInteger randomIntMax;
 
     /**
-     * Gets the value of the object property.
+     * Gets the value of the randomIntMax property.
      * 
      * @return
      *     possible object is
-     *     {@link SomeRandomObject }
+     *     {@link BigInteger }
      *     
      */
-    public SomeRandomObject getObject() {
-        return object;
+    public BigInteger getRandomIntMax() {
+        return randomIntMax;
     }
 
     /**
-     * Sets the value of the object property.
+     * Sets the value of the randomIntMax property.
      * 
      * @param value
      *     allowed object is
-     *     {@link SomeRandomObject }
+     *     {@link BigInteger }
      *     
      */
-    public void setObject(SomeRandomObject value) {
-        this.object = value;
+    public void setRandomIntMax(BigInteger value) {
+        this.randomIntMax = value;
     }
 
 }

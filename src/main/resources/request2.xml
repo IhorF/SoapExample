@@ -2,8 +2,8 @@
                   xmlns:gs="http://generated.soapexample.com">
     <soapenv:Header/>
     <soapenv:Body>
-        <gs:getObjectRequest>
-            <gs:userName>Spain</gs:userName>
-        </gs:getObjectRequest>
+        <gs:getRandomIntRequest>
+            <gs:randomIntMax>1000</gs:randomIntMax>
+        </gs:getRandomIntRequest>
     </soapenv:Body>
 </soapenv:Envelope>
