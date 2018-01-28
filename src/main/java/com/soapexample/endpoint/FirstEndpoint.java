@@ -1,7 +1,7 @@
 package com.soapexample.endpoint;
 
 import com.soapexample.somelogic.RandomFactory;
-import https.somenamespace.ws.*;
+import com.soapexample.generated.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -17,7 +17,7 @@ public class FirstEndpoint {
     @Autowired
     private RandomFactory randomFactory;
 
-    @PayloadRoot(namespace = "https://somenamespace/ws", localPart = "getObjectRequest")
+    @PayloadRoot(namespace = "http://generated.soapexample.com", localPart = "getObjectRequest")
     @ResponsePayload
     public GetObjectResponse getObject(@RequestPayload GetObjectRequest userName) {
         System.out.println(userName.getUserName());

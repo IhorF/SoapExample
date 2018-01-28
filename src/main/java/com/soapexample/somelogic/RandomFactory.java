@@ -1,6 +1,6 @@
 package com.soapexample.somelogic;
 
-import https.somenamespace.ws.SomeRandomObject;
+import com.soapexample.generated.SomeRandomObject;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;

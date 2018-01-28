@@ -1,5 +1,6 @@
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="https://somenamespace/ws"
-           targetNamespace="https://somenamespace/ws" elementFormDefault="qualified">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://soapexample.generated.com"
+           targetNamespace="http://soapexample.generated.com" elementFormDefault="qualified">
 
     <xs:element name="getObjectRequest">
         <xs:complexType>
