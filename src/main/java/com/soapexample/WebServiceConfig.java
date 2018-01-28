@@ -26,13 +26,13 @@ public class WebServiceConfig extends WsConfigurerAdapter {
         return new ServletRegistrationBean(servlet, "/ws/*");
     }
 
-    @Bean(name = "objects")
-    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema countriesSchema) {
+    @Bean(name = "someObjects")
+    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema objectsSchema) {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
         wsdl11Definition.setPortTypeName("SomeObjectPort");
         wsdl11Definition.setLocationUri("/ws");
-        wsdl11Definition.setTargetNamespace("https://localhost:8080/ws");
-        wsdl11Definition.setSchema(countriesSchema);
+        wsdl11Definition.setTargetNamespace("https://somenamespace/ws");
+        wsdl11Definition.setSchema(objectsSchema);
         return wsdl11Definition;
     }
 

@@ -1,7 +1,7 @@
 package com.soapexample.endpoint;
 
 import com.soapexample.somelogic.RandomFactory;
-import io.spring.guides.gs_producing_web_service.SomeRandomObject;
+import https.somenamespace.ws.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -17,13 +17,17 @@ public class FirstEndpoint {
     @Autowired
     private RandomFactory randomFactory;
 
-    @PayloadRoot(namespace = "https://localhost:8080/wss", localPart = "getObject")
-    public @ResponsePayload SomeRandomObject getRandomObject(@RequestPayload String userName) {
-        System.out.println(userName);
+    @PayloadRoot(namespace = "https://somenamespace/ws", localPart = "getObjectRequest")
+    @ResponsePayload
+    public GetObjectResponse getObject(@RequestPayload GetObjectRequest userName) {
+        System.out.println(userName.getUserName());
 
         SomeRandomObject randomObject = randomFactory.getSomeRandomObject();
-        randomObject.setRandomString(userName + " - " + randomObject.getRandomString());
+        randomObject.setRandomString(userName.getUserName() + " - " + randomObject.getRandomString());
 
-        return randomObject;
+        GetObjectResponse objectResponse = new GetObjectResponse();
+        objectResponse.setObject(randomObject);
+
+        return objectResponse;
     }
 }
