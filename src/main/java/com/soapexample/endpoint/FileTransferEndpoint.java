@@ -13,6 +13,8 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 import javax.activation.DataHandler;
 import java.net.MalformedURLException;
 
+import static com.soapexample.ProjectConstants.NAMESPACE_URI;
+
 /**
  * Created by Ivan on 28.01.2018.
  */
@@ -21,7 +23,7 @@ public class FileTransferEndpoint {
     @Autowired
     private ObjectService objectService;
 
-    @PayloadRoot(localPart = "downloadMessageRequest", namespace = "http://generated.soapexample.com")
+    @PayloadRoot(localPart = "downloadMessageRequest", namespace = NAMESPACE_URI)
     @ResponsePayload
     public DownloadMessageResponse getCSVFile(@RequestPayload DownloadMessageRequest request) {
         DownloadResponseType responseType = new DownloadResponseType();
@@ -30,7 +32,7 @@ public class FileTransferEndpoint {
         try {
             DownloadResponseType.PayLoad handler = new DownloadResponseType.PayLoad();
 
-            handler.setMessagePayLoad(new DataHandler(objectService.getObjectsInCSVFile().toURL()));
+            handler.setMessagePayLoad(new DataHandler(objectService.getObjectsInCSVFile().toURI().toURL()));
             responseType.setPayLoad(handler);
         } catch (MalformedURLException e) {
             e.printStackTrace();

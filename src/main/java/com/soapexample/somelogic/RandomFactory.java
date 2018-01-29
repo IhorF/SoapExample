@@ -1,6 +1,5 @@
 package com.soapexample.somelogic;
 
-import com.soapexample.generated.SomeRandomObject;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
