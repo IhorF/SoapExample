@@ -4,3 +4,4 @@ target/*
 .idea/*
 *.csv
 src/main/java/com/soapexample/generated/*
+*.log
