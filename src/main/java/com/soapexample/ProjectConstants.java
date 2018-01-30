@@ -2,5 +2,8 @@ package com.soapexample;
 
 public interface ProjectConstants {
 
-    static final String NAMESPACE_URI = "http://generated.soapexample.com";
+    String NAMESPACE_URI = "http://generated.soapexample.com";
+
+    String DIRECTORY_WITH_FILES = "files";
+    long FILE_SIZE_LIMIT = 10000L;
 }
