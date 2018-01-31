@@ -93,5 +93,33 @@
         </xs:sequence>
     </xs:complexType>
 
+    <xs:element name="getFileNamesResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="fileNamesList" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <!-- Need to have this to handle request without any parameters -->
+    <xs:element name="getFileNamesRequest">
+        <xs:complexType>
+            <xs:sequence/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getFileRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="fileName" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="getFileResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="file" type="xs:base64Binary" xmime:expectedContentTypes="application/octet-stream"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 
 </xs:schema>

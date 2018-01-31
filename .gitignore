@@ -5,3 +5,4 @@ target/*
 *.csv
 src/main/java/com/soapexample/generated/*
 *.log
+src/main/resources/files/*

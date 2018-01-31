@@ -2,6 +2,8 @@ package com.soapexample.endpoint;
 
 import com.soapexample.somelogic.RandomFactory;
 import com.soapexample.generated.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -24,7 +26,6 @@ public class FirstEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getObjectRequest")
     @ResponsePayload
     public GetObjectResponse getObject(@RequestPayload GetObjectRequest userName) {
-        System.out.println(userName.getUserName());
 
         SomeRandomObject randomObject = randomFactory.getSomeRandomObject();
         randomObject.setRandomString(userName.getUserName() + " - " + randomObject.getRandomString());
@@ -39,7 +40,6 @@ public class FirstEndpoint {
     @ResponsePayload
     public GetRandomIntResponse getRandomInt(@RequestPayload GetRandomIntRequest request) {
         int maxValue = request.getRandomIntMax().intValue();
-        System.out.println("Got a max parameter = " + maxValue);
 
         GetRandomIntResponse response = new GetRandomIntResponse();
         response.setRandomInt(new BigInteger(String.valueOf(randomFactory.getRandomInteger(maxValue))));

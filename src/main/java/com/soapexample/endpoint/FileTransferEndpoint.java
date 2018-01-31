@@ -4,6 +4,8 @@ import com.soapexample.generated.DownloadMessageRequest;
 import com.soapexample.generated.DownloadMessageResponse;
 import com.soapexample.generated.DownloadResponseType;
 import com.soapexample.somelogic.ObjectService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -20,6 +22,8 @@ import static com.soapexample.ProjectConstants.NAMESPACE_URI;
  */
 @Endpoint
 public class FileTransferEndpoint {
+    private final Logger LOGGER = LoggerFactory.getLogger(FileTransferEndpoint.class);
+
     @Autowired
     private ObjectService objectService;
 
@@ -27,15 +31,14 @@ public class FileTransferEndpoint {
     @ResponsePayload
     public DownloadMessageResponse getCSVFile(@RequestPayload DownloadMessageRequest request) {
         DownloadResponseType responseType = new DownloadResponseType();
-        System.out.println("Got an ID: " + request.getRandomInt().intValue());
 
         try {
-            DownloadResponseType.PayLoad handler = new DownloadResponseType.PayLoad();
+        	DownloadResponseType.PayLoad handler = new DownloadResponseType.PayLoad();
 
             handler.setMessagePayLoad(new DataHandler(objectService.getObjectsInCSVFile().toURI().toURL()));
             responseType.setPayLoad(handler);
         } catch (MalformedURLException e) {
-            e.printStackTrace();
+            LOGGER.error("Error occurred. {}", e.getMessage());
         }
 
         DownloadMessageResponse response = new DownloadMessageResponse();

@@ -1,7 +1,8 @@
 package com.soapexample.somelogic;
 
+import com.soapexample.exceptions.ExceedFileSizeException;
+
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -11,6 +12,5 @@ public interface FileService {
 
 	List<String> getFileNamesList();
 
-	File getFile(String fileName)
-			throws IOException;
+	File getFile(String fileName) throws ExceedFileSizeException;
 }

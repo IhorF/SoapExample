@@ -3,6 +3,8 @@ package com.soapexample.endpoint;
 import com.soapexample.generated.Document;
 import com.soapexample.generated.StoreDocumentRequest;
 import com.soapexample.generated.StoreDocumentResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
@@ -17,11 +19,13 @@ import static com.soapexample.ProjectConstants.NAMESPACE_URI;
 
 @Endpoint
 public class DocumentEndpoint {
+    final private Logger LOGGER = LoggerFactory.getLogger(DocumentEndpoint.class);
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "storeDocumentRequest")
     @ResponsePayload
-    public StoreDocumentResponse storeDocument(
-            @RequestPayload StoreDocumentRequest request) throws IOException {
+    public StoreDocumentResponse storeDocument(@RequestPayload StoreDocumentRequest request)
+			throws IOException {
+
         Document document = request.getDocument();
         BufferedReader reader = null;
         int counter2 = 0;
@@ -30,32 +34,33 @@ public class DocumentEndpoint {
             while (in.read() != -1) {
                 ++counter;
             }
-            reader = new BufferedReader(new InputStreamReader(document.getContent().getInputStream()));
-            String line = "";
-            System.out.println(document.getName() + "   sdfsf");
+            reader = new BufferedReader(new InputStreamReader(document.getContent()
+					.getInputStream()));
+            String line;
+
+            LOGGER.info(document.getName());
             Pattern p = Pattern.compile("fff", Pattern.CASE_INSENSITIVE);
             while ((line = reader.readLine()) != null) {
                 Matcher m = p.matcher(line);
-                System.out.println(m);
+
                 while (m.find()) {
                     counter2++;
                 }
             }
-            System.out.println(String.format("received %d bytes", counter));
-            System.out.println("Author " + document.getAuthor());
-            System.out.println("Name " + document.getName());
+
+            LOGGER.info("Received {} bytes. Author: {}. Name: {}",
+					counter, document.getAuthor(), document.getName());
         } catch (IOException e) {
-            e.printStackTrace();
+			LOGGER.error(e.getMessage());
         } finally {
             try {
                 reader.close();
             } catch (IOException | NullPointerException e) {
-                e.printStackTrace();
+                LOGGER.error("Can't close BufferedReader. {}", e.getMessage());
             }
         }
         StoreDocumentResponse response = new StoreDocumentResponse();
         response.setCount(BigInteger.valueOf(counter2));
         return response;
     }
-
 }

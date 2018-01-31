@@ -42,10 +42,15 @@ public class FileServiceImpl implements FileService {
 	}
 
 	@Override
-	public File getFile(String fileName) throws IOException {
-		File file = getFileFromResourceByPath(fileName);
+	public File getFile(String fileName) throws ExceedFileSizeException {
+		File file = null;
+		try {
+			file = getFileFromResourceByPath(fileName);
+		} catch (IOException e) {
+			LOGGER.warn("File {} not found.", fileName);
+		}
 
-		long fileSize =	file.getTotalSpace();
+		long fileSize =	file.length();
 		if (fileSize > ProjectConstants.FILE_SIZE_LIMIT) {
 			throw new ExceedFileSizeException(fileSize);
 		}

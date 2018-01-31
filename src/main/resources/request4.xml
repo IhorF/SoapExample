@@ -1,0 +1,7 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:gs="http://generated.soapexample.com">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <gs:getFileNamesRequest/>
+    </soapenv:Body>
+</soapenv:Envelope>
