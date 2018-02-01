@@ -16,6 +16,7 @@ import org.springframework.xml.xsd.SimpleXsdSchema;
 import org.springframework.xml.xsd.XsdSchema;
 
 import javax.xml.soap.SOAPException;
+import java.util.regex.Pattern;
 
 /**
  * Created by Ivan on 28.01.2018.

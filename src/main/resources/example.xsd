@@ -87,8 +87,7 @@
 
     <xs:complexType name="document">
         <xs:sequence>
-            <xs:element name="name" type="xs:string" />
-            <xs:element name="author" type="xs:string" />
+            <xs:element name="word" type="xs:string" />
             <xs:element name="content" type="xs:base64Binary" xmime:expectedContentTypes="application/octet-stream" />
         </xs:sequence>
     </xs:complexType>

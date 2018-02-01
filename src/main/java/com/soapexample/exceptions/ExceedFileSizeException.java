@@ -17,7 +17,7 @@ public class ExceedFileSizeException extends IOException {
 	private long size;
 
 	public ExceedFileSizeException(long size) {
-		super(String.format("Size of file(%d) is to big", size));
+		super("Size of file is to big");
 		this.size = size;
 	}
 
