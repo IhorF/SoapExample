@@ -72,6 +72,8 @@ public class VideoFilesEndpoint {
 			SaajSoapMessage message = messageFactory.createWebServiceMessage();
 			message.addAttachment("file", dataHandler);
 			context.setResponse(message);
+			GetFileResponse fileResponse = new GetFileResponse();
+			fileResponse.setFile(dataHandler);
 		} catch (MalformedURLException e) {
 			LOGGER.warn("Can't get DataHandler object from {} file. ", fileName);
 		}
