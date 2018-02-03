@@ -3,7 +3,7 @@
     <soapenv:Header/>
     <soapenv:Body>
         <gs:getFileRequest>
-            <gs:fileName>jre-8u91-linux-i586.tar.gz</gs:fileName>
+            <gs:fileName>file1.txt</gs:fileName>
         </gs:getFileRequest>
     </soapenv:Body>
 </soapenv:Envelope>

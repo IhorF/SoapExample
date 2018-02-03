@@ -7,7 +7,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.ws.config.annotation.EnableWs;
-import org.springframework.ws.config.annotation.WsConfigurerAdapter;
+import org.springframework.ws.config.annotation.WsConfigurationSupport;
+import org.springframework.ws.server.endpoint.adapter.DefaultMethodEndpointAdapter;
+import org.springframework.ws.server.endpoint.adapter.method.MarshallingPayloadMethodProcessor;
+import org.springframework.ws.server.endpoint.adapter.method.MessageContextMethodArgumentResolver;
+import org.springframework.ws.server.endpoint.adapter.method.MethodArgumentResolver;
+import org.springframework.ws.server.endpoint.adapter.method.MethodReturnValueHandler;
 import org.springframework.ws.soap.saaj.SaajSoapMessageFactory;
 import org.springframework.ws.soap.server.endpoint.SoapFaultAnnotationExceptionResolver;
 import org.springframework.ws.transport.http.MessageDispatcherServlet;
@@ -16,14 +21,15 @@ import org.springframework.xml.xsd.SimpleXsdSchema;
 import org.springframework.xml.xsd.XsdSchema;
 
 import javax.xml.soap.SOAPException;
-import java.util.regex.Pattern;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Ivan on 28.01.2018.
  */
 @EnableWs
 @Configuration
-public class WebServiceConfig extends WsConfigurerAdapter {
+public class WebServiceConfig extends WsConfigurationSupport {
     @Bean
     public ServletRegistrationBean messageDispatcherServlet(ApplicationContext applicationContext) {
         MessageDispatcherServlet servlet = new MessageDispatcherServlet();
@@ -74,5 +80,27 @@ public class WebServiceConfig extends WsConfigurerAdapter {
     public SoapFaultAnnotationExceptionResolver exceptionResolver() {
 
         return new SoapFaultAnnotationExceptionResolver();
+    }
+
+    @Bean
+    @Override
+    public DefaultMethodEndpointAdapter defaultMethodEndpointAdapter() {
+        List<MethodArgumentResolver> argumentResolvers = new ArrayList<MethodArgumentResolver>();
+        argumentResolvers.add(methodProcessor());
+        argumentResolvers.add(new MessageContextMethodArgumentResolver());
+
+        List<MethodReturnValueHandler> returnValueHandlers = new ArrayList<MethodReturnValueHandler>();
+        returnValueHandlers.add(methodProcessor());
+
+        DefaultMethodEndpointAdapter adapter = new DefaultMethodEndpointAdapter();
+        adapter.setMethodArgumentResolvers(argumentResolvers);
+        adapter.setMethodReturnValueHandlers(returnValueHandlers);
+
+        return adapter;
+    }
+
+    @Bean
+    MarshallingPayloadMethodProcessor methodProcessor() {
+        return new MarshallingPayloadMethodProcessor(marshaller());
     }
 }

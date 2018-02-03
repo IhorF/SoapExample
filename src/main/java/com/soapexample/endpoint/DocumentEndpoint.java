@@ -1,6 +1,5 @@
 package com.soapexample.endpoint;
 
-import com.soapexample.generated.Document;
 import com.soapexample.generated.StoreDocumentRequest;
 import com.soapexample.generated.StoreDocumentResponse;
 import com.soapexample.somelogic.WordService;
@@ -29,10 +28,9 @@ public class DocumentEndpoint {
     public StoreDocumentResponse storeDocument(@RequestPayload StoreDocumentRequest request)
 			throws IOException {
 
-        Document document = request.getDocument();
         StoreDocumentResponse response = new StoreDocumentResponse();
-        response.setCount(BigInteger.valueOf(wordService.getOccurrenceInStream(document.getWord(),
-				document.getContent().getInputStream())));
+        response.setCount(BigInteger.valueOf(wordService.getOccurrenceInStream(request.getWord(),
+				request.getContent().getInputStream())));
 
         return response;
     }
