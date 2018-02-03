@@ -20,7 +20,6 @@ import org.springframework.ws.soap.saaj.SaajSoapMessageFactory;
 import javax.activation.DataHandler;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.MalformedURLException;
 
 import static com.soapexample.ProjectConstants.DIRECTORY_WITH_FILES;
