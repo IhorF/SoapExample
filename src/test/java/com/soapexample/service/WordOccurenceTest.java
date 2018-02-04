@@ -19,6 +19,8 @@ import static org.junit.Assert.assertTrue;
 
 /**
  * Created by Ivan.Malynovskyi on 31.01.2018  19:22.
+ *
+ * Test functionality of {@link WordService}
  */
 @RunWith(Theories.class)
 public class WordOccurenceTest {
@@ -47,7 +49,7 @@ public class WordOccurenceTest {
 		assertEquals(wordService.getOccurrenceInStream(value.getWord(), inputStream), value.getExpectedCount());
 	}
 
-	private Pattern getPattern(String word) {
+	public static Pattern getPattern(String word) {
 		return Pattern.compile(word, Pattern.CASE_INSENSITIVE);
 	}
 

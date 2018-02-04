@@ -15,13 +15,18 @@ import java.util.regex.Pattern;
 /**
  * Created by Ivan.Malynovskyi on 01.02.2018  11:19.
  *
- * The implementation of WordService
+ * The implementation of {@link WordService}
+ * @version 1.1.0
+ * @since 1.1.0
  *
  */
 @Service
 public class WordServiceImpl implements WordService {
 	private final Logger LOGGER = LoggerFactory.getLogger(WordService.class);
 
+	/**
+	 * @see WordService#getOccurrenceInStream(String, InputStream)
+	 */
 	@Override
 	public int getOccurrenceInStream(String word, InputStream inputStream) {
 		int count= 0;
@@ -39,6 +44,9 @@ public class WordServiceImpl implements WordService {
 		return count;
 	}
 
+	/**
+	 * @see WordService#getOccurrenceInText(Pattern, String)
+	 */
 	@Override
 	public int getOccurrenceInText(Pattern pattern, String text) {
 		int count = 0;

@@ -19,6 +19,8 @@ import static org.junit.Assert.assertNull;
 
 /**
  * Created by Ivan.Malynovskyi on 31.01.2018  16:34.
+ *
+ * Test functionality of {@link FileService}
  */
 @RunWith(SpringRunner.class)
 public class FileServiceTest {

@@ -16,13 +16,21 @@ import java.util.List;
 
 /**
  * Created by Ivan.Malynovskyi on 30.01.2018  12:17.
+ *
+ * Implementation of {@link FileService}
+ *
+ * @version 1.1.0
+ * @since 1.1.0
+ *
  */
 @Component
 public class FileServiceImpl implements FileService {
 
-	final Logger LOGGER = LoggerFactory.getLogger(FileServiceImpl.class);
+	private final Logger LOGGER = LoggerFactory.getLogger(FileServiceImpl.class);
 
-
+    /**
+     * @see FileService#getFileNamesList()
+     */
 	@Override
 	public List<String> getFileNamesList() {
 		List<String> fileNamesList = new ArrayList<>();
@@ -41,6 +49,9 @@ public class FileServiceImpl implements FileService {
 		return fileNamesList;
 	}
 
+    /**
+     * @see FileService#getFile(String)
+     */
 	@Override
 	public File getFile(String fileName) throws ExceedFileSizeException {
 		File file = null;
@@ -50,7 +61,7 @@ public class FileServiceImpl implements FileService {
 			LOGGER.warn("File {} not found.", fileName);
 		}
 
-		long fileSize =	file.length();
+		long fileSize = file != null ? file.length() : 0;
 		if (fileSize > ProjectConstants.FILE_SIZE_LIMIT) {
 			throw new ExceedFileSizeException(fileSize);
 		}
@@ -58,6 +69,15 @@ public class FileServiceImpl implements FileService {
 		return file;
 	}
 
+	/**
+	 * Return an array of files from directory.
+	 *
+	 * @param directory directory from which method will return an array
+	 * @return array of files
+	 * @throws FileNotFoundException param directory is not actually a directory
+	 * 								 of directory is empty
+	 *
+	 */
 	private File[] getFiles(File directory) throws FileNotFoundException {
 		if (!directory.isDirectory()) {
 			throw new FileNotFoundException("Directory was not found!");
@@ -74,6 +94,14 @@ public class FileServiceImpl implements FileService {
 		return files;
 	}
 
+	/**
+	 *
+	 * Return file by name from resources folder
+	 *
+	 * @param name name of file from resource folder
+	 * @return file
+	 * @throws IOException thrown when are not able to get file from resources
+	 */
 	private File getFileFromResourceByPath(String name) throws IOException {
 		return new ClassPathResource(ProjectConstants.DIRECTORY_WITH_FILES +
 				(name.isEmpty() ? "" : (File.separator + name))).getFile();

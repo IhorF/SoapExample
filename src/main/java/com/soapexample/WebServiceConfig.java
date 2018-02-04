@@ -24,8 +24,12 @@ import javax.xml.soap.SOAPException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.soapexample.ProjectConstants.NAMESPACE_URI;
+
 /**
  * Created by Ivan on 28.01.2018.
+ *
+ * Config class with all necessary beans
  */
 @EnableWs
 @Configuration
@@ -43,7 +47,7 @@ public class WebServiceConfig extends WsConfigurationSupport {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
         wsdl11Definition.setPortTypeName("SomeObjectPort");
         wsdl11Definition.setLocationUri("/ws");
-        wsdl11Definition.setTargetNamespace("http://generated.soapexample.com");
+        wsdl11Definition.setTargetNamespace(NAMESPACE_URI);
         wsdl11Definition.setSchema(objectsSchema);
         return wsdl11Definition;
     }
@@ -85,11 +89,11 @@ public class WebServiceConfig extends WsConfigurationSupport {
     @Bean
     @Override
     public DefaultMethodEndpointAdapter defaultMethodEndpointAdapter() {
-        List<MethodArgumentResolver> argumentResolvers = new ArrayList<MethodArgumentResolver>();
+        List<MethodArgumentResolver> argumentResolvers = new ArrayList<>();
         argumentResolvers.add(methodProcessor());
         argumentResolvers.add(new MessageContextMethodArgumentResolver());
 
-        List<MethodReturnValueHandler> returnValueHandlers = new ArrayList<MethodReturnValueHandler>();
+        List<MethodReturnValueHandler> returnValueHandlers = new ArrayList<>();
         returnValueHandlers.add(methodProcessor());
 
         DefaultMethodEndpointAdapter adapter = new DefaultMethodEndpointAdapter();

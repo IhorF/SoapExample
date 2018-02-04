@@ -11,6 +11,9 @@ import java.io.IOException;
  * Custom exception which will be thrown when requested
  * files is bigger than ProjectConstants.FILE_SIZE_LIMIT
  *
+ * @version 1.1.0
+ * @since 1.1.0
+ *
  */
 @SoapFault(faultCode = FaultCode.CUSTOM, customFaultCode = "{http://generated.soapexample.com}SERVER_SPECIFIC")
 public class ExceedFileSizeException extends IOException {

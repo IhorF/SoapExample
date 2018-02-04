@@ -14,7 +14,13 @@ import java.util.stream.Collectors;
 
 /**
  * Created by Ivan on 28.01.2018.
+ *
+ * Implementation of {@link ObjectService}
+ *
+ * @version 1.0.0
+ * @since 1.0.0
  */
+@Deprecated
 @Component
 public class ObjectServiceImpl implements ObjectService {
 	final private Logger LOGGER = LoggerFactory.getLogger(ObjectService.class);
@@ -58,6 +64,9 @@ public class ObjectServiceImpl implements ObjectService {
 		return exceptionOccured ? null : file;
 	}
 
+	/**
+	 * Custom object
+	 */
 	class BasketballClub {
 		int id;
 		String name;

@@ -11,7 +11,13 @@ import java.util.stream.Collectors;
 
 /**
  * Created by Ivan on 28.01.2018.
+ *
+ * Used to return random {@link String} or {@link Integer}
+ * Deprecated since 1.0.1
+ *
+ * @version 1.0.0
  */
+@Deprecated
 @Component
 public class RandomFactory {
 

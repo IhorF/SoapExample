@@ -1,12 +1,15 @@
 package com.soapexample;
 
-import com.soapexample.somelogic.FileService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import org.springframework.context.ApplicationContext;
 
+/**
+ * Auto generated class
+ *
+ * @since 0.0.1
+ */
 @SpringBootApplication
 @EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
 public class SoapexampleApplication {

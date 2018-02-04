@@ -33,6 +33,8 @@ import static com.soapexample.ProjectConstants.NAMESPACE_URI;
  * 1) return list of available files
  * 2) return file by name
  *
+ * @version 1.1.0
+ * @since 1.0.2
  */
 @Endpoint
 public class VideoFilesEndpoint {
@@ -45,6 +47,13 @@ public class VideoFilesEndpoint {
 	@Autowired
 	private SaajSoapMessageFactory messageFactory;
 
+	/**
+	 * Web service which return list of file names from source folder.
+	 * For this {@link FileService} is used
+	 *
+	 * @param request object of simple class without any field
+	 * @return response of type {@link GetFileNamesResponse} with list of names
+	 */
 	@PayloadRoot(localPart = "getFileNamesRequest", namespace = NAMESPACE_URI)
 	@ResponsePayload
 	public GetFileNamesResponse getFileNames(@RequestPayload GetFileNamesRequest request) {
@@ -58,9 +67,20 @@ public class VideoFilesEndpoint {
 		return response;
 	}
 
+
+	/**
+	 * Web service which return list of file names from source folder.
+	 * For this {@link FileService} is used
+	 *
+	 * @param fileRequest object wilt file name
+	 * @throws ExceedFileSizeException thrown when file is too big. @see {@link FileService#getFile(String)}
+	 *
+	 * @return response of type {@link GetFileResponse} with attached file
+	 */
 	@PayloadRoot(localPart = "getFileRequest", namespace = NAMESPACE_URI)
 	@ResponsePayload
-	public GetFileResponse getFile(@RequestPayload GetFileRequest fileRequest, MessageContext context) throws ExceedFileSizeException {
+	public GetFileResponse getFile(@RequestPayload GetFileRequest fileRequest, MessageContext context)
+			throws ExceedFileSizeException {
 
 		String fileName = fileRequest.getFileName();
 		DataHandler dataHandler;

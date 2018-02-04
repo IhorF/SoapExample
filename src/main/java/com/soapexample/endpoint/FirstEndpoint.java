@@ -16,7 +16,13 @@ import static com.soapexample.ProjectConstants.NAMESPACE_URI;
 
 /**
  * Created by Ivan on 28.01.2018.
+ *
+ * Deprecated endpoint.
+ *
+ * @version 1.0.0
+ * @since 1.0.0
  */
+@Deprecated
 @Endpoint
 public class FirstEndpoint {
 

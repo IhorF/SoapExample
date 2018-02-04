@@ -13,6 +13,9 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * Created by Ivan.Malynovskyi on 01.02.2018  13:48.
+ *
+ * Matcher which used to recognize received SoapFault.
+ * Used in tests from {@link com.soapexample.endpoint.VideoEndpointTest} class
  */
 public class SoapFaultResponseMatcher implements ResponseMatcher {
 	private final String faultCode;

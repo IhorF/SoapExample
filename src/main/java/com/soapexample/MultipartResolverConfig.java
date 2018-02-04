@@ -1,9 +1,3 @@
-/**
- * Copyright (c) 2014-2015 DVM-Deutsche Verrechnungsstelle Mittelstand GmbH
- * All rights reserved. The use of this program and the
- * accompanying materials are subject to license terms.
- */
-
 package com.soapexample;
 
 import org.springframework.context.annotation.Bean;
@@ -13,6 +7,9 @@ import org.springframework.ws.config.annotation.EnableWs;
 
 /**
  * Provides the MultipartResolver beans necessary to use multipart requests/responses.
+ *
+ * @version 1.1.0
+ * @since 1.1.0
  */
 @Configuration
 public class MultipartResolverConfig {
@@ -24,8 +21,7 @@ public class MultipartResolverConfig {
 
 	@Bean
 	public CommonsMultipartResolver filterMultipartResolver() {
-		final CommonsMultipartResolver resolver = new CommonsMultipartResolver();
-		return resolver;
+		return new CommonsMultipartResolver();
 	}
 
 
